@@ -20,7 +20,7 @@ class ReceiverIdInvalidException implements Exception{
   }
 }
 class SenderNotAuthenticateException implements Exception{
-  static constString report ="SenderNotAuthenticateException";//isso não
+  static const String report ="SenderNotAuthenticateException";//isso não
   //me parece tão bom, creio que exista formas melhores
   String idSender;
   SenderNotAuthenticateException({required this.idSender});
@@ -42,5 +42,19 @@ class SenderBalanceLowerThanAmountException implements Exception{
     return "$report\nID Sender: $idSender\n"
         "Sender Balance : ${senderBalance}\n"
         "Amount : ${amount}";
+  }
+}
+class ReceiverNotAuthenticatedException implements Exception {
+  static const String report = "ReceiverNotAuthenticatedException";
+
+  String idReceiver;
+  late String message;
+  ReceiverNotAuthenticatedException({required this.idReceiver}) {
+    message = "$report\nID Sender: $idReceiver";
+  }
+
+  @override
+  String toString() {
+    return message;
   }
 }

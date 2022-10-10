@@ -29,6 +29,14 @@ class BankController {
     if (!accountSender.isAuthenticated) {
       throw SenderNotAuthenticateException(idSender: idSender);
     }
+    if (!accountSender.isAuthenticated) {
+      throw SenderNotAuthenticateException (idSender: idSender);
+    }
+
+    // Verificar se o destinatário está autenticado
+    if (!accountReceiver.isAuthenticated) {
+      throw ReceiverNotAuthenticatedException(idReceiver: idReceiver);
+    }
 
     // Verificar se o remetente possui saldo suficiente
     if (accountSender.balance < amount) {
@@ -38,6 +46,7 @@ class BankController {
         amount: amount,
       );
     }
+
 
     // Se tudo estiver certo, efetivar transação
     accountSender.balance -= amount;
